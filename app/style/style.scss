@@ -113,8 +113,10 @@ header {
     .card-container {
       margin-top: 50px;
     }
+    .card-content {
+      gap: unset !important;
+    }
     .card {
-      flex-wrap: nowrap;
       flex-direction: column;
     }
   }

@@ -1,34 +1,41 @@
 "use client";
+import Image from "next/image";
 import Navbar from "../components/navbar";
 
 const ProductsPage: React.FC = () => {
   const products = [
     {
-      name: "Town Team",
+      img: "/xiaomi.png",
+      name: "Xiaomi",
       percentage: "10%",
       description: "This is the description of offer 1.",
     },
     {
-      name: "El-Ezaby",
+      img: "/apple.png",
+      name: "Apple",
       percentage: "25%",
       description: "This is the description of offer 2.",
     },
     {
-      name: "pizza",
+      img: "/samsung.png",
+      name: "Samsung",
       percentage: "8%",
       description: "This is the description of offer 3.",
     },
     {
-      name: "Zara",
+      img: "/puma.png",
+      name: "Puma",
       percentage: "50%",
       description: "This is the description of offer 4.",
     },
     {
-      name: "Addidas",
+      img: "/adidas.png",
+      name: "Adidas",
       percentage: "12%",
       description: "This is the description of offer 5.",
     },
     {
+      img: "/nike.png",
       name: "Nike",
       percentage: "15%",
       description: "This is the description of offer 6.",
@@ -43,9 +50,20 @@ const ProductsPage: React.FC = () => {
         <div className="card-container">
           {products.map((product, index) => (
             <div key={index} className="card">
-              <h2>{product.name}</h2>
-              <p>percentage: {product.percentage}</p>
-              <p>{product.description}</p>
+              <div className="qr-code">
+                <Image
+                  className="qr-img"
+                  src={product.img}
+                  alt={product.name}
+                  width={80}
+                  height={80}
+                />
+              </div>
+              <div className="card-content">
+                <h3>{product.name}</h3>
+                <p>percentage: {product.percentage}</p>
+                <p>{product.description}</p>
+              </div>
             </div>
           ))}
         </div>
