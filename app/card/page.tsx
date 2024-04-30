@@ -6,12 +6,12 @@ import Link from "next/link";
 
 const Card: React.FC = () => {
   const qrUrls = [
-    `http://localhost:3000/valid?name=username&cardNumber=2121028790002407&isValid=true`,
-    `http://localhost:3000/valid?name=username&cardNumber=9445944611516120&isValid=false`,
-    `http://localhost:3000/valid?name=username&cardNumber=6859093107986957&isValid=true`,
-    `http://localhost:3000/valid?name=username&cardNumber=1431580449321734&isValid=false`,
-    `http://localhost:3000/valid?name=username&cardNumber=9758377599758158&isValid=true`,
-    `http://localhost:3000/valid?name=username&cardNumber=4411620538763908&isValid=false`,
+    `/valid?name=username&cardNumber=2121028790002407&isValid=true`,
+    `/valid?name=username&cardNumber=9445944611516120&isValid=false`,
+    `/valid?name=username&cardNumber=6859093107986957&isValid=true`,
+    `/valid?name=username&cardNumber=1431580449321734&isValid=false`,
+    `/valid?name=username&cardNumber=9758377599758158&isValid=true`,
+    `/valid?name=username&cardNumber=4411620538763908&isValid=false`,
   ];
 
   const cardLabels = [
