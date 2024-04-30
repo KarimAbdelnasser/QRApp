@@ -1,7 +1,7 @@
 "use client";
 import Head from "next/head";
 import { Box, Typography } from "@mui/material";
-import { CheckCircleOutline } from "@mui/icons-material";
+import { CheckCircleOutline, Close } from "@mui/icons-material";
 import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -22,7 +22,6 @@ const ValidPage: React.FC = () => {
 const ValidComponent: React.FC = () => {
   const searchParams = useSearchParams();
   const isTrue = searchParams.get("isValid");
-  console.log(isTrue);
 
   return (
     <Box
@@ -36,30 +35,19 @@ const ValidComponent: React.FC = () => {
           <h1 style={{ color: "black" }}>This card is valid</h1>
           <div
             style={{
-              width: "300px",
-              height: "300px",
+              width: "150px",
+              height: "150px",
               borderRadius: "50%",
-              backgroundColor: "green",
+              backgroundColor: "#54b5a6",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              margin: "15px 0 "
+              margin: "15px 0",
             }}
           >
             <CheckCircleOutline style={{ fontSize: 100, color: "white" }} />
           </div>
-          <Link
-            href="/pin"
-            rel="canonical"
-            style={{
-              textDecoration: "none",
-              fontSize: "28px",
-              backgroundColor: "green",
-              color: "white",
-              padding: "8px 25px",
-              borderRadius: "10px"
-            }}
-          >
+          <Link href="/pin" rel="canonical" className="successBtn">
             Next
           </Link>
         </Box>
@@ -68,20 +56,21 @@ const ValidComponent: React.FC = () => {
           <h1 style={{ color: "black" }}>This card is not valid</h1>
           <div
             style={{
-              width: "300px",
-              height: "300px",
+              width: "150px",
+              height: "150px",
               borderRadius: "50%",
               backgroundColor: "red",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              marginBottom: "444px",
+              margin: "15px 0",
             }}
           >
-            <Typography variant="h6" style={{ color: "white", fontSize: 100 }}>
-              X
-            </Typography>
+            <Close style={{ fontSize: 100, color: "white" }} />
           </div>
+          <Link href="/" rel="canonical" className="redBtn">
+            Back
+          </Link>
         </Box>
       )}
     </Box>

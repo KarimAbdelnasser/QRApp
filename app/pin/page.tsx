@@ -1,44 +1,45 @@
-'use client'
-
-import React, { useState } from 'react';
-import './pin.css'
-
+"use client";
+import React, { useState } from "react";
+import { errorToast, successToast } from "../components/AlertTimer";
 const PinPage: React.FC = () => {
-  const [pin, setPin] = useState<string>('');
+  const [pin, setPin] = useState<string>("");
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPin = e.target.value.replace(/\D/g, '').slice(0, 4); 
-    
+    const newPin = e.target.value.replace(/\D/g, "").slice(0, 4);
+
     setPin(newPin);
   };
 
   const handleConfirm = () => {
     if (pin.length === 4) {
-      console.log('Pin entered:', pin);
-      alert('Pin confirmed!');
-      window.location.href = '/offers';
+      successToast("Pin confirmed!");
+      setTimeout(() => (window.location.href = "/offers"), 2000);
     } else {
-      alert('Please enter a 4-digit PIN.');
+      errorToast("Please enter a 4-digit PIN.");
     }
   };
 
   return (
-    <div className={'container'}>
-      <div className={'box'}>
+    <main className="main-page">
+      <div className="box">
         <h1>Enter PIN</h1>
         <input
           type="text"
           value={pin}
           onChange={handlePinChange}
-          className={'pin-input'}
+          className={"pin-input"}
           minLength={4}
           maxLength={4}
         />
-        <button onClick={handleConfirm} className={'pin-button'}>
+        <button
+          onClick={handleConfirm}
+          className="successBtn"
+          style={{ width: "100%%" }}
+        >
           Confirm
         </button>
       </div>
-    </div>
+    </main>
   );
 };
 

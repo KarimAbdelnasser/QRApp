@@ -1,11 +1,9 @@
-
-import Card from "./card/page";
-import styles from "./page.module.css";
+import QRCard from "./components/QRCard";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-     <Card/>
+    <main className="main-page">
+      <QRCard />
     </main>
   );
 }

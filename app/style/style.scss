@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Cairo", sans-serif;
+}
+.main-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    .card {
+      gap: 10px;
+      padding: 20px;
+      flex-wrap: wrap;
+      display: flex;
+      border-radius: 20px;
+      text-decoration: none;
+      color: black;
+      border: 1px solid #54b5a6;
+      transition: ease-in-out 0.2s;
+      width: calc(100% / 4);
+      background-color: white;
+      .qr-img {
+        width: 150px !important;
+        height: 150px !important;
+      }
+    }
+    .card-content {
+      display: flex;
+      justify-content: center;
+      gap: 10px !important;
+      flex-direction: column;
+    }
+    .card:hover {
+      border: 1px solid #54b5a6;
+      background-color: #54b5a6;
+      color: white;
+    }
+  }
+}
+.box {
+  width: 400px;
+  padding: 20px 30px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(270deg, #3266e3, #54b5a6);
+  flex-direction: column;
+  border-radius: 20px;
+  input {
+    width: 100%;
+    text-align: center;
+    padding: 8px 35px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: unset;
+  }
+  input:focus {
+    outline: unset;
+  }
+  .successBtn {
+    width: 100%;
+    cursor: pointer;
+  }
+}
+.successBtn {
+  padding: 8px 35px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid #54b5a6;
+  color: black;
+  transition: ease-in-out 0.2s;
+  background-color: white;
+  text-decoration: none;
+}
+.successBtn:hover {
+  background-color: #54b5a6;
+  color: white;
+}
+.redBtn {
+  padding: 8px 35px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid red;
+  color: black;
+  transition: ease-in-out 0.2s;
+  background-color: white;
+  text-decoration: none;
+}
+.redBtn:hover {
+  background-color: red;
+  color: white;
+}
+header {
+  background: linear-gradient(270deg, #3266e3, #54b5a6);
+}
+.offers {
+  .main-page {
+    min-height: 100%;
+    .card-container {
+      margin-top: 50px;
+    }
+    .card {
+      flex-wrap: nowrap;
+      flex-direction: column;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .main-page {
+    padding: 10px;
+    .card-container {
+      .card {
+        width: 100%;
+      }
+      .qr-code {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      .card:hover {
+        border: 1px solid blue;
+        background: linear-gradient(270deg, #3266e3, #54b5a6);
+      }
+      .card-content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+    }
+  }
+}
