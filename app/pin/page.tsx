@@ -13,9 +13,13 @@ const PinPage: React.FC = () => {
   };
 
   const handleConfirm = () => {
-    console.log('Pin entered:', pin);
-    alert('Pin confirmed!');
-window.location.href='/offers'
+    if (pin.length === 4) {
+      console.log('Pin entered:', pin);
+      alert('Pin confirmed!');
+      window.location.href = '/offers';
+    } else {
+      alert('Please enter a 4-digit PIN.');
+    }
   };
 
   return (
@@ -27,6 +31,7 @@ window.location.href='/offers'
           value={pin}
           onChange={handlePinChange}
           className={'pin-input'}
+          minLength={4}
           maxLength={4}
         />
         <button onClick={handleConfirm} className={'pin-button'}>
