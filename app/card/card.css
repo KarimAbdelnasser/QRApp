@@ -1,0 +1,42 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Display two columns */
+    gap: 20px; /* Add gap between cards */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .national-card {
+    width: 600px; /* Adjust width */
+    height: 400px; /* Adjust height */
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: linear-gradient(to bottom, #1a3888, #2c6bb2);
+    color: #ffffff;
+    font-size: 20px; /* Adjust font size */
+    margin: 20px;
+  }
+  
+  .card-body {
+    font-size: 18px; /* Adjust font size */
+    letter-spacing: 1px; /* Adjust letter spacing */
+  }
+  
+  .card-name {
+    margin-bottom: 20px; /* Adjust margin */
+    margin-top: 35px; /* Adjust margin */
+  }
+  
+  .qr-code {
+    margin-left: auto;
+    width: 150px; /* Adjust width */
+    height: 200px; /* Adjust height */
+    transform: scale(1.5); /* Adjust scale */
+  }
+  
