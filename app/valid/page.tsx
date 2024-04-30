@@ -5,11 +5,11 @@ import { CheckCircleOutline } from "@mui/icons-material";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-interface Props {
-  value: string;
-}
+// interface Props {
+//   value: string;
+// }
 
-const ValidPage: React.FC<Props> = ({ value }) => {
+const ValidPage: React.FC = () => {
   const searchParams = useSearchParams();
   const isTrue = searchParams.get("isValid");
   console.log(isTrue);
