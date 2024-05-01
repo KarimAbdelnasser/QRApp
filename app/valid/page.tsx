@@ -32,7 +32,7 @@ const ValidComponent: React.FC = () => {
     >
       {isTrue === "true" ? (
         <Box m={2} display="flex" flexDirection="column" alignItems="center">
-          <h1 style={{ color: "black" }}>This card is valid</h1>
+          <h1 style={{ color: "black" }}>هذا الكارت صالح</h1>
           <div
             style={{
               width: "150px",
@@ -48,12 +48,12 @@ const ValidComponent: React.FC = () => {
             <CheckCircleOutline style={{ fontSize: 100, color: "white" }} />
           </div>
           <Link href="/pin" rel="canonical" className="successBtn">
-            Next
+            التالى
           </Link>
         </Box>
       ) : (
         <Box m={2} display="flex" flexDirection="column" alignItems="center">
-          <h1 style={{ color: "black" }}>This card is not valid</h1>
+          <h1 style={{ color: "black" }}>هذا الكارت غير صالح</h1>
           <div
             style={{
               width: "150px",
@@ -69,7 +69,7 @@ const ValidComponent: React.FC = () => {
             <Close style={{ fontSize: 100, color: "white" }} />
           </div>
           <Link href="/" rel="canonical" className="redBtn">
-            Back
+            عودة
           </Link>
         </Box>
       )}

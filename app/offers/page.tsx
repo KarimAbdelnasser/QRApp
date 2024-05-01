@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Navbar from "../components/navbar";
+import CategoryList from "../components/CategoryList";
 
 const ProductsPage: React.FC = () => {
   const products = [
@@ -46,7 +47,8 @@ const ProductsPage: React.FC = () => {
     <div className="offers">
       <Navbar />
       <h1 style={{ textAlign: "center", margin: "20px 0" }}>Your offers</h1>
-      <div className="main-page">
+      <CategoryList />
+      {/* <div className="main-page">
         <div className="card-container">
           {products.map((product, index) => (
             <div key={index} className="card">
@@ -67,7 +69,7 @@ const ProductsPage: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

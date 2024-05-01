@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const QRCard: React.FC = () => {
   const qrUrls = [
-    `https://cardnames.vercel.app//valid?name=username&cardNumber=9445944611516120&isValid=false`,
-    `https://cardnames.vercel.app//valid?name=username&cardNumber=2121028790002407&isValid=true`,
-    `https://cardnames.vercel.app//valid?name=username&cardNumber=6859093107986957&isValid=true`,
-    `https://cardnames.vercel.app//valid?name=username&cardNumber=1431580449321734&isValid=false`,
-    `https://cardnames.vercel.app//valid?name=username&cardNumber=9758377599758158&isValid=true`,
-    `https://cardnames.vercel.app//valid?name=username&cardNumber=4411620538763908&isValid=false`,
+    `https://cardnames.vercel.app/valid?name=username&cardNumber=2121028790002407&isValid=true`,
+    `https://cardnames.vercel.app/valid?name=username&cardNumber=9445944611516120&isValid=false`,
+    `https://cardnames.vercel.app/valid?name=username&cardNumber=6859093107986957&isValid=true`,
+    `https://cardnames.vercel.app/valid?name=username&cardNumber=1431580449321734&isValid=false`,
+    `https://cardnames.vercel.app/valid?name=username&cardNumber=9758377599758158&isValid=true`,
+    `https://cardnames.vercel.app/valid?name=username&cardNumber=4411620538763908&isValid=false`,
   ];
 
   const cardLabels = [
