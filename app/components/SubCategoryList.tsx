@@ -47,7 +47,7 @@ function SubCategoryList({ category, resetTitle, nameX }: any) {
                 setAnchorEl(null);
               }}
             >
-              {sub.title}
+              {(i += 1)}- {sub.title}
             </MenuItem>
           ))}
         </Menu>

@@ -47,6 +47,37 @@
     }
   }
 }
+#newGrid {
+  .card {
+    gap: 5px;
+    padding: 20px;
+    flex-wrap: wrap;
+    display: flex;
+    border-radius: 20px;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #54b5a6;
+    transition: ease-in-out 0.2s;
+    width: fit-content;
+    background-color: white;
+    margin: 10px 0;
+    .qr-img {
+      width: 100px !important;
+      height: 100px !important;
+    }
+  }
+  .card-content {
+    display: flex;
+    justify-content: center;
+    gap: 5px !important;
+    flex-direction: column;
+  }
+  .card:hover {
+    border: 1px solid #54b5a6;
+    background-color: #54b5a6;
+    color: white;
+  }
+}
 .box {
   width: 400px;
   padding: 20px 30px;
@@ -144,6 +175,11 @@ header {
         align-items: center;
         flex-direction: column;
       }
+    }
+  }
+  #newGrid {
+    .card {
+      width: 100%;
     }
   }
 }

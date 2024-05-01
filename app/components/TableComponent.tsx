@@ -9,8 +9,6 @@ import { Container } from "@mui/material";
 import Image from "next/image";
 
 function TableComponent({ subCategory }: any) {
-  console.log(subCategory);
-
   return (
     <>
       {subCategory.branch ? (
@@ -115,6 +113,7 @@ function TableComponent({ subCategory }: any) {
           </div>
         </div>
       )}
+   
     </>
   );
 }
