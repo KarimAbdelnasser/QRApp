@@ -46,7 +46,6 @@ const ProductsPage: React.FC = () => {
   return (
     <div className="offers">
       <Navbar />
-      <h1 style={{ textAlign: "center", margin: "20px 0" }}>Your offers</h1>
       <CategoryList />
       {/* <div className="main-page">
         <div className="card-container">

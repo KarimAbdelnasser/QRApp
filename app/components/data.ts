@@ -1,5 +1,150 @@
 export const rows = [
   {
+    name: "المطاعم و الكافيهات",
+    arr: [
+      {
+        img: "/starbucks.png",
+        title: "Starbucks",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "الخدمات الطبية",
+    arr: [
+      {
+        img: "/el-ezaby.png",
+        title: "el-ezaby",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "الفنادق",
+    arr: [
+      {
+        img: "/Hilton.png",
+        title: "Hilton",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "البواخر السياحية",
+    arr: [
+      {
+        img: "/tourism.png",
+        title: "Tourism",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "الملابس",
+    arr: [
+      {
+        img: "/puma.png",
+        title: "Puma",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+      {
+        img: "/adidas.png",
+        title: "Adidas",
+        percentage: "12%",
+        description: "This is the description of offer 5.",
+      },
+      {
+        img: "/nike.png",
+        title: "Nike",
+        percentage: "15%",
+        description: "This is the description of offer 6.",
+      },
+    ],
+  },
+  {
+    name: "الحلوى",
+    arr: [
+      {
+        img: "/saleSucre.png",
+        title: "Sale Sucre",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "مفروشات و اثاث و مستلزمات منزلية",
+    arr: [
+      {
+        img: "/nasagon.png",
+        title: "Elnasagon",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "مكتبات",
+    arr: [
+      {
+        img: "/S_A.png",
+        title: "Samir & Ali",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "خدمات متنوعة",
+    arr: [
+      {
+        img: "/settings.png",
+        title: "خدمات متنوعة",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
+    name: "الاجهزة الالكترونية",
+    arr: [
+      {
+        img: "/xiaomi.png",
+        title: "Xiaomi",
+        percentage: "10%",
+        description: "This is the description of offer 1.",
+      },
+      {
+        img: "/apple.png",
+        title: "Apple",
+        percentage: "25%",
+        description: "This is the description of offer 2.",
+      },
+      {
+        img: "/samsung.png",
+        title: "Samsung",
+        percentage: "8%",
+        description: "This is the description of offer 3.",
+      },
+    ],
+  },
+  {
+    name: "خدمات السيارات",
+    arr: [
+      {
+        img: "/bmw.png",
+        title: "BMW",
+        percentage: "50%",
+        description: "This is the description of offer 4.",
+      },
+    ],
+  },
+  {
     name: "صالات الالعاب الرياضية",
     arr: [
       {
@@ -66,140 +211,6 @@ export const rows = [
     ],
   },
   {
-    name: "الاجهزة الالكترونية",
-    arr: [
-      {
-        img: "/xiaomi.png",
-        title: "Xiaomi",
-        percentage: "10%",
-        description: "This is the description of offer 1.",
-      },
-      {
-        img: "/apple.png",
-        title: "Apple",
-        percentage: "25%",
-        description: "This is the description of offer 2.",
-      },
-      {
-        img: "/samsung.png",
-        title: "Samsung",
-        percentage: "8%",
-        description: "This is the description of offer 3.",
-      },
-    ],
-  },
-  {
-    name: "الملابس",
-    arr: [
-      {
-        img: "/puma.png",
-        title: "Puma",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-      {
-        img: "/adidas.png",
-        title: "Adidas",
-        percentage: "12%",
-        description: "This is the description of offer 5.",
-      },
-      {
-        img: "/nike.png",
-        title: "Nike",
-        percentage: "15%",
-        description: "This is the description of offer 6.",
-      },
-    ],
-  },
-  {
-    name: "المطاعم و الكافيهات",
-    arr: [
-      {
-        img: "/starbucks.png",
-        title: "Starbucks",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "الخدمات الطبية",
-    arr: [
-      {
-        img: "/el-ezaby.png",
-        title: "el-ezaby",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "الفنادق",
-    arr: [
-      {
-        img: "/Hilton.png",
-        title: "Hilton",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "البواخر السياحية",
-    arr: [
-      {
-        img: "/tourism.png",
-        title: "Tourism",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "الحلوى",
-    arr: [
-      {
-        img: "/saleSucre.png",
-        title: "Sale Sucre",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "مفروشات و اثاث و مستلزمات منزلية",
-    arr: [
-      {
-        img: "/nasagon.png",
-        title: "Elnasagon",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "مكتبات",
-    arr: [
-      {
-        img: "/S_A.png",
-        title: "Samir & Ali",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "خدمات السيارات",
-    arr: [
-      {
-        img: "/bmw.png",
-        title: "BMW",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
     name: "خدمات ترفيهية",
     arr: [
       {
@@ -227,17 +238,6 @@ export const rows = [
       {
         img: "/shampoo.png",
         title: "Sunsilk",
-        percentage: "50%",
-        description: "This is the description of offer 4.",
-      },
-    ],
-  },
-  {
-    name: "خدمات متنوعة",
-    arr: [
-      {
-        img: "/settings.png",
-        title: "خدمات متنوعة",
         percentage: "50%",
         description: "This is the description of offer 4.",
       },

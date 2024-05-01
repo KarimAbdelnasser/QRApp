@@ -48,7 +48,7 @@ function CategoryList() {
             cursor: "pointer",
             display: "flex",
             alignItems: "center",
-            marginBottom: "5px",
+            margin: "10px 0",
           }}
           onClick={() => {
             setCategory(null);

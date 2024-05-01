@@ -20,6 +20,7 @@ const Navbar: React.FC = () => {
       <header
         style={{
           padding: "20px 0",
+          margin: "0 0 10px 0",
         }}
       >
         <nav
@@ -29,7 +30,7 @@ const Navbar: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <span style={{ color: "white", fontSize: "50px" }}>QR App</span>
+          <span style={{ color: "white", fontSize: "50px" }}>White Card</span>
         </nav>
       </header>
     </div>
