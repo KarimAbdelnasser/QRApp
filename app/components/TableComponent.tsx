@@ -37,98 +37,103 @@ function TableComponent({ subCategory }: any) {
                 <div style={{ marginBottom: "10px" }}>
                   <div style={{ textAlign: "center" }}>
                     <Image
+                      onClick={() =>
+                        setCustomeClick(customeClick === index ? null : index)
+                      }
                       src="/golds.png"
                       alt="logo"
                       width={150}
                       height={150}
-                      style={{ marginBottom: "10px" }}
+                      style={{ marginBottom: "10px", cursor: "pointer" }}
                     />
                   </div>
-                  <TableContainer component={Paper} dir="rtl">
-                    <Table
-                      sx={{ minWidth: 650 }}
-                      size="small"
-                      aria-label="a dense table"
-                    >
-                      <TableHead>
-                        <TableRow>
-                          <TableCell
-                            style={{ fontWeight: "bold", fontSize: "20px" }}
-                            align="right"
-                          >
-                            اسم الفرع
-                          </TableCell>
-                          <TableCell
-                            align="right"
-                            style={{ fontWeight: "bold", fontSize: "20px" }}
-                          >
-                            اشتراك جديد
-                          </TableCell>
-                          <TableCell
-                            align="right"
-                            style={{ fontWeight: "bold", fontSize: "20px" }}
-                          >
-                            تجديد اشتراك
-                          </TableCell>
-                          <TableCell
-                            align="right"
-                            style={{ fontWeight: "bold", fontSize: "20px" }}
-                          >
-                            اشتراك سنوى
-                          </TableCell>
-                          <TableCell
-                            align="right"
-                            style={{ fontWeight: "bold", fontSize: "20px" }}
-                          >
-                            اشتراك ربع سنوى
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {sub.branch.map((row: any) => (
-                          <TableRow
-                            key={row.txt}
-                            sx={{
-                              "&:last-child td, &:last-child th": {
-                                border: 0,
-                              },
-                            }}
-                          >
+                  {customeClick === index && (
+                    <TableContainer component={Paper} dir="rtl">
+                      <Table
+                        sx={{ minWidth: 650 }}
+                        size="small"
+                        aria-label="a dense table"
+                      >
+                        <TableHead>
+                          <TableRow>
                             <TableCell
+                              style={{ fontWeight: "bold", fontSize: "20px" }}
                               align="right"
-                              style={{ fontSize: "16px" }}
                             >
-                              {row.txt}
+                              اسم الفرع
                             </TableCell>
                             <TableCell
                               align="right"
-                              style={{ fontSize: "16px" }}
+                              style={{ fontWeight: "bold", fontSize: "20px" }}
                             >
-                              {row.subscribe}
+                              اشتراك جديد
                             </TableCell>
                             <TableCell
                               align="right"
-                              style={{ fontSize: "16px" }}
+                              style={{ fontWeight: "bold", fontSize: "20px" }}
                             >
-                              {row.renewal}
+                              تجديد اشتراك
                             </TableCell>
                             <TableCell
                               align="right"
-                              style={{ fontSize: "16px" }}
+                              style={{ fontWeight: "bold", fontSize: "20px" }}
                             >
-                              {row.year}
+                              اشتراك سنوى
                             </TableCell>
                             <TableCell
                               align="right"
-                              style={{ fontSize: "16px" }}
+                              style={{ fontWeight: "bold", fontSize: "20px" }}
                             >
-                              {row.threeMonth}
+                              اشتراك ربع سنوى
                             </TableCell>
                           </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                          {sub.branch.map((row: any) => (
+                            <TableRow
+                              key={row.txt}
+                              sx={{
+                                "&:last-child td, &:last-child th": {
+                                  border: 0,
+                                },
+                              }}
+                            >
+                              <TableCell
+                                align="right"
+                                style={{ fontSize: "16px" }}
+                              >
+                                {row.txt}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                style={{ fontSize: "16px" }}
+                              >
+                                {row.subscribe}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                style={{ fontSize: "16px" }}
+                              >
+                                {row.renewal}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                style={{ fontSize: "16px" }}
+                              >
+                                {row.year}
+                              </TableCell>
+                              <TableCell
+                                align="right"
+                                style={{ fontSize: "16px" }}
+                              >
+                                {row.threeMonth}
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  )}
                 </div>
               ) : (
                 <div
