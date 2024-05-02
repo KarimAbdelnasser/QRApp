@@ -12,13 +12,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import ReplayIcon from "@mui/icons-material/Replay";
 import Grid from "@mui/material/Grid";
-
 import Image from "next/image";
+
 function CategoryList() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [category, setCategory] = useState<any>(null);
   const [name, setName] = useState<any>(null);
   const [nameX, setNameX] = useState<any>(null);
+  const [customeClick, setCustomeClick] = useState<any>(false);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -108,12 +109,12 @@ function CategoryList() {
         style={{ width: "100%", padding: "0 10px" }}
         container
         justifyContent={"center"}
-        alignItems={"center"}
+        alignItems={"start"}
         maxWidth={"xl"}
         id="newGrid"
       >
         {!category &&
-          allData.map((sub) => (
+          allData.map((sub, index) => (
             <Grid
               item
               lg={sub.branch ? 12 : 3}
@@ -220,7 +221,12 @@ function CategoryList() {
                   </TableContainer>
                 </div>
               ) : (
-                <div className="card">
+                <div
+                  className="card"
+                  onClick={() =>
+                    setCustomeClick(customeClick === index ? null : index)
+                  }
+                >
                   <div className="qr-code">
                     <Image
                       className="qr-img"
@@ -230,11 +236,13 @@ function CategoryList() {
                       height={80}
                     />
                   </div>
-                  <div>
-                    <h3>{sub.title}</h3>
-                    <p>percentage: {sub.percentage}</p>
-                    <p>{sub.description}</p>
-                  </div>
+                  {customeClick === index && (
+                    <div className="card-content">
+                      <h3>{sub.title}</h3>
+                      <p>percentage: {sub.percentage}</p>
+                      <p>{sub.description}</p>
+                    </div>
+                  )}
                 </div>
               )}
             </Grid>

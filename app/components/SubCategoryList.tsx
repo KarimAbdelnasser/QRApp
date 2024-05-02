@@ -15,7 +15,7 @@ function SubCategoryList({ category, resetTitle, nameX }: any) {
   };
   return (
     <>
-      <div>
+      {/* <div>
         <Button
           id="demo-positioned-button"
           aria-controls={open ? "demo-positioned-menu" : undefined}
@@ -52,8 +52,8 @@ function SubCategoryList({ category, resetTitle, nameX }: any) {
           ))}
         </Menu>
         <TableContainer />
-      </div>
-      {subCategory && <TableComponent subCategory={subCategory} />}
+      </div> */}
+      {category && <TableComponent subCategory={category.arr} />}
     </>
   );
 }
