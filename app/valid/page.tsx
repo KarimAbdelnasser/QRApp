@@ -45,14 +45,14 @@ const ValidComponent: React.FC = () => {
           alignItems="center"
           height="100vh"
         >
-          {scanResult.responseCode == "200" && !error ? (
+          {!error && scanResult.sign == true ? (
             <Box
               m={2}
               display="flex"
               flexDirection="column"
               alignItems="center"
             >
-              <h1 style={{ color: "black" }}>{scanResult.responseMessage}</h1>
+              <h1 style={{ color: "black", direction: "rtl" }}>{`${scanResult.responseMessage} ${scanResult.activeOfferBrand? scanResult.activeOfferBrand : ""}`}</h1>
               <div
                 style={{
                   width: "150px",
@@ -78,7 +78,7 @@ const ValidComponent: React.FC = () => {
               flexDirection="column"
               alignItems="center"
             >
-              <h1 style={{ color: "black" }}>هذا الكارت غير صالح</h1>
+              <h1 style={{ color: "black", direction: "rtl" }}>{`${scanResult.responseMessage} ${scanResult.activeOfferBrand? scanResult.activeOfferBrand : ""}`}</h1>
               <div
                 style={{
                   width: "150px",
