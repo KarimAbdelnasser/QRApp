@@ -9,8 +9,9 @@ import Paper from "@mui/material/Paper";
 import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
+import { Button } from "@mui/material";
 
-function TableComponent({ subCategory }: any) {
+function TableComponent({ subCategory, handleOpenPopUp, otpStatus }: any) {
   const [customeClick, setCustomeClick] = useState<any>(false);
 
   return (
@@ -27,13 +28,13 @@ function TableComponent({ subCategory }: any) {
           subCategory.map((sub: any, index: any) => (
             <Grid
               item
-              lg={sub.branch ? 12 : 3}
-              md={sub.branch ? 12 : 4}
-              sm={sub.branch ? 12 : 6}
+              lg={sub.branch.length != 0 ? 12 : 3}
+              md={sub.branch.length != 0 ? 12 : 4}
+              sm={sub.branch.length != 0 ? 12 : 6}
               xs={12}
               key={sub.title}
             >
-              {sub.branch ? (
+              {sub.branch.length != 0 ? (
                 <div style={{ marginBottom: "10px" }}>
                   <div style={{ textAlign: "center" }}>
                     <Image
@@ -145,18 +146,40 @@ function TableComponent({ subCategory }: any) {
                   <div className="qr-code">
                     <Image
                       className="qr-img"
-                      src={sub.img}
-                      alt={sub.title}
+                      src={sub.imgName}
+                      alt={sub.offerName}
                       width={80}
                       height={80}
                     />
                   </div>
                   {customeClick === index && (
                     <div className="card-content">
-                      <h3>{sub.title}</h3>
-                      <p>percentage: {sub.percentage}</p>
-                      <p>{sub.description}</p>
+                      <h3>{sub.offerName}</h3>
+                      <p>percentage: {sub.offerPercentage}</p>
+                      <p>{sub.offerDescription}</p>
                     </div>
+                  )}
+                  {customeClick === index && otpStatus != "disable" && (
+                    <Button
+                      onClick={handleOpenPopUp}
+                      sx={{
+                        padding: "8px 35px",
+                        borderRadius: "10px",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        border: "1px solid #54b5a6",
+                        color: "black",
+                        transition: "ease-in-out 0.3s",
+                        backgroundColor: "white",
+                        textDecoration: "none",
+                        "&:hover": {
+                          backgroundColor: "#54b5a6",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      Activate Offer
+                    </Button>
                   )}
                 </div>
               )}

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import TableComponent from "./TableComponent";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-function SubCategoryList({ category, resetTitle, nameX }: any) {
+function SubCategoryList({ category, resetTitle, nameX, handleOpenPopUp, otpStatus }: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [subCategory, setSubCategory] = useState<any>(null);
   const open = Boolean(anchorEl);
@@ -13,6 +13,7 @@ function SubCategoryList({ category, resetTitle, nameX }: any) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  console.log(category)
   return (
     <>
       {/* <div>
@@ -53,7 +54,7 @@ function SubCategoryList({ category, resetTitle, nameX }: any) {
         </Menu>
         <TableContainer />
       </div> */}
-      {category && <TableComponent subCategory={category.arr} />}
+      {category && <TableComponent subCategory={category} handleOpenPopUp={handleOpenPopUp} otpStatus={otpStatus} />}
     </>
   );
 }

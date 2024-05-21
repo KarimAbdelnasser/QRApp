@@ -1,40 +1,47 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { url } from "inspector";
+import React, { useEffect } from "react";
 import QRCode from "qrcode.react";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchQrCodes, getQRs } from "../redux/getAllQrSlice";
+import Loading from "./Loading";
 
 const QRCard: React.FC = () => {
-  const qrData = [
-    {
-      url: `https://cardnames.vercel.app/valid?name=username&cardNumber=9445944611516120&isValid=true`,
-      imageSrc: "/qr_valid.png",
-      label: "0000 0000",
-    },
-    {
-      url: `https://cardnames.vercel.app/valid?name=username&cardNumber=2121028790002407&isValid=false`,
-      imageSrc: "/qr_invalid.png",
-      label: "2121 0287",
-    },
-  ];
+  const dispatch = useDispatch();
+  const adminToken =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjRjYjIzZGM1MTFmOWFjMDljNDFhYWEiLCJpc1ZlcmlmaWVkIjp0cnVlLCJpc0FkbWluIjp0cnVlLCJjYXJkTnVtYmVyIjoiMDAwMDAwMDAiLCJpYXQiOjE3MTYzMDI1Mzd9.JB7VDN_kdQ3FT5NX9f-batzH6CrQci_GrnzUoKlpc5w";
+  useEffect(() => {
+    dispatch(fetchQrCodes(adminToken) as any);
+  }, [dispatch]);
+  
+  const isLoading = useSelector((state: any) => state.QRCode.isLoading);
+
+  const getQRsData = useSelector(getQRs);
+
+  const link = (qrValue:any) => {
+    console.log(qrValue.replace("https://cardnames.vercel.app", "http://localhost:3000"))
+    return qrValue.replace("https://cardnames.vercel.app", "http://localhost:3000")
+  }
 
   return (
-
-
     <div className="card-container">
-    {qrData.map((url, index) => (
-      <Link href={qrData[index].url} key={index} className="card">
-        <div className="qr-code">
-          <QRCode value={qrData[index].url} className="qr-img" />
-        </div>
-        <div className="card-content">
-          <h2 style={{marginTop:"50px"}}>Card Number: {qrData[index].label}</h2>
-        </div>
-      </Link>
-    ))}
-  </div>
-    
+      {!isLoading ? getQRsData.map((data: any, index: any) => (
+        <Link href={link(data.url)} key={index} className="card">
+          <div className="qr-code">
+            <img
+              src={`data:image/jpeg;base64,${data.qrValue}`}
+              alt="QR Code"
+              className="qr-img"
+            />
+          </div>
+          <div className="card-content">
+            <h2>Offer Card</h2>
+            <h4>{data.userName}</h4>
+            <h5>{data.cardNumber}</h5>
+          </div>
+        </Link>
+      )): <Loading Circular={true}></Loading>}
+    </div>
   );
 };
 
