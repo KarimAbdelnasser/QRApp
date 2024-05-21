@@ -18,7 +18,7 @@ export const fetchOffers = createAsyncThunk(
         "auth-token": authToken,
       };
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/offer/getOffers`,
+        `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/offer/getOffers?limit=60`,
         { headers }
       );
 

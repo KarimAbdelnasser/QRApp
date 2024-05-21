@@ -20,7 +20,7 @@ const QRCard: React.FC = () => {
 
   const link = (qrValue:any) => {
     // console.log(qrValue.replace("https://cardnames.vercel.app", "http://localhost:3000"))
-    return qrValue
+    return qrValue.replace("https://cardnames.vercel.app", "http://localhost:3000")
   }
 
   return (
@@ -36,7 +36,6 @@ const QRCard: React.FC = () => {
           </div>
           <div className="card-content">
             <h2>Offer Card</h2>
-            <h4>{data.userName}</h4>
             <h5>{data.cardNumber}</h5>
           </div>
         </Link>
