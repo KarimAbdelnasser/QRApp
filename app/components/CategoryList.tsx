@@ -95,8 +95,8 @@ function CategoryList() {
     ];
     return (
       <Box>
-        {pos.map((loc: any, index: Number) => {
-          return <Box className={`watermark ${loc}`}>{watermark}</Box>;
+        {pos.map((loc: any, index: any) => {
+          return <Box key={index} className={`watermark ${loc}`}>{watermark}</Box>;
         })}
       </Box>
     );
