@@ -76,7 +76,6 @@ function CategoryList() {
   };
 
   const otpConfirm = () => {
-    console.log(otpValue);
     dispatch(verifyOtp(otpValue));
   };
 
@@ -157,12 +156,6 @@ function CategoryList() {
                 <MenuItem
                   key={row.name}
                   onClick={() => {
-                    console.log(
-                      offers?.filter(
-                        (subCat: any) =>
-                          subCat.categoryNumber === row.categoryNumber
-                      )
-                    );
                     setCategory(
                       offers?.filter(
                         (subCat: any) =>

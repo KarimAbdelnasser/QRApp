@@ -19,7 +19,7 @@ const QRCard: React.FC = () => {
   const getQRsData = useSelector(getQRs);
 
   const link = (qrValue:any) => {
-    console.log(qrValue.replace("https://cardnames.vercel.app", "http://localhost:3000"))
+    // console.log(qrValue.replace("https://cardnames.vercel.app", "http://localhost:3000"))
     return qrValue
   }
 

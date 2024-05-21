@@ -24,7 +24,7 @@ export const sendOTP = createAsyncThunk(
         { brand },
         { headers }
       );
-      console.log(response.data)
+
       successToast(response.data.responseMessage);
       return response.data;
     } catch (error:any) {
@@ -48,7 +48,7 @@ export const verifyOtp = createAsyncThunk(
           { otp },
           { headers }
         );
-        console.log(response.data)
+
         successToast(response.data.responseMessage);
         return response.data;
       } catch (error:any) {

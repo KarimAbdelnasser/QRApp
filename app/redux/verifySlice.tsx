@@ -14,20 +14,16 @@ export const verification = createAsyncThunk(
   "user/verifyPin",
   async (pin: any) => {
     try {
-      console.log("enter")
       const authToken = sessionStorage.getItem("auth-token");
-      console.log(authToken)
       const headers = {
         "auth-token": authToken,  
       };
-      console.log(`${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/verifyPin`)
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/verifyPin`,
         { pin },
         { headers }
       );
 
-      console.log(response.data) //
       
       successToast(response.data.responseMessage);
       return response.data.responseMessage;

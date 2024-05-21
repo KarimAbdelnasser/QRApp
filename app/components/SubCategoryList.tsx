@@ -13,7 +13,6 @@ function SubCategoryList({ category, resetTitle, nameX, handleOpenPopUp, otpStat
   const handleClose = () => {
     setAnchorEl(null);
   };
-  console.log(category)
   return (
     <>
       {/* <div>

@@ -21,8 +21,6 @@ export const fetchCategories = createAsyncThunk(
         { headers }
       );
 
-      console.log(response)
-
       return response.data;
     } catch (error) {
       throw new Error("Failed to fetch categotries");
