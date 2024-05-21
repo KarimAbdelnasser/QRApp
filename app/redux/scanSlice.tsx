@@ -15,7 +15,6 @@ export const scan = createAsyncThunk("user/scan", async (userId:any) => {
     );
 
     sessionStorage.setItem("auth-token",response.data.token)
-    
     return response.data;
   } catch (error:any) {
     sessionStorage.removeItem("auth-token");

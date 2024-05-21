@@ -38,7 +38,7 @@ const ValidComponent: React.FC = () => {
 
   return (
     <>
-      {!isLoading ? (
+      {!isLoading && scanResult ? (
         <Box
           display="flex"
           justifyContent="center"

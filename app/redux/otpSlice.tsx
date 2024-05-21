@@ -4,7 +4,8 @@ import axios from "axios";
 import { errorToast, successToast } from "../components/AlertTimer";
 
 const initialState = {
-  isLoading: true,
+  isLoading: false,
+  isLoadingButton: false,
   otpSendingStatus: "",
   otpConfirmation: false,
   error: null,
@@ -80,16 +81,16 @@ const otpSlice = createSlice({
         state.error = null
       })
       .addCase(verifyOtp.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingButton = true;
         state.error = null;
       })
       .addCase(verifyOtp.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingButton = false;
         state.error = null;
         state.otpConfirmation = true;
       })
       .addCase(verifyOtp.rejected, (state, action) => {
-        state.isLoading = false;
+        state.isLoadingButton = false;
         state.otpConfirmation = false;
         state.error = null
       });

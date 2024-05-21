@@ -10,8 +10,14 @@ import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import Loading from "./Loading";
 
-function TableComponent({ subCategory, handleOpenPopUp, otpStatus }: any) {
+function TableComponent({
+  subCategory,
+  handleOpenPopUp,
+  otpStatus,
+  isLoadingOTP,
+}: any) {
   const [customeClick, setCustomeClick] = useState<any>(false);
 
   return (
@@ -49,91 +55,117 @@ function TableComponent({ subCategory, handleOpenPopUp, otpStatus }: any) {
                     />
                   </div>
                   {customeClick === index && (
-                    <TableContainer component={Paper} dir="rtl">
-                      <Table
-                        sx={{ minWidth: 650 }}
-                        size="small"
-                        aria-label="a dense table"
-                      >
-                        <TableHead>
-                          <TableRow>
-                            <TableCell
-                              style={{ fontWeight: "bold", fontSize: "20px" }}
-                              align="right"
-                            >
-                              اسم الفرع
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              style={{ fontWeight: "bold", fontSize: "20px" }}
-                            >
-                              اشتراك جديد
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              style={{ fontWeight: "bold", fontSize: "20px" }}
-                            >
-                              تجديد اشتراك
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              style={{ fontWeight: "bold", fontSize: "20px" }}
-                            >
-                              اشتراك سنوى
-                            </TableCell>
-                            <TableCell
-                              align="right"
-                              style={{ fontWeight: "bold", fontSize: "20px" }}
-                            >
-                              اشتراك ربع سنوى
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {sub.branch.map((row: any) => (
-                            <TableRow
-                              key={row.txt}
-                              sx={{
-                                "&:last-child td, &:last-child th": {
-                                  border: 0,
-                                },
-                              }}
-                            >
+                    <>
+                      <TableContainer component={Paper} dir="rtl">
+                        <Table
+                          sx={{ minWidth: 650 }}
+                          size="small"
+                          aria-label="a dense table"
+                        >
+                          <TableHead>
+                            <TableRow>
                               <TableCell
+                                style={{ fontWeight: "bold", fontSize: "20px" }}
                                 align="right"
-                                style={{ fontSize: "16px" }}
                               >
-                                {row.txt}
+                                اسم الفرع
                               </TableCell>
                               <TableCell
                                 align="right"
-                                style={{ fontSize: "16px" }}
+                                style={{ fontWeight: "bold", fontSize: "20px" }}
                               >
-                                {row.subscribe}
+                                اشتراك جديد
                               </TableCell>
                               <TableCell
                                 align="right"
-                                style={{ fontSize: "16px" }}
+                                style={{ fontWeight: "bold", fontSize: "20px" }}
                               >
-                                {row.renewal}
+                                تجديد اشتراك
                               </TableCell>
                               <TableCell
                                 align="right"
-                                style={{ fontSize: "16px" }}
+                                style={{ fontWeight: "bold", fontSize: "20px" }}
                               >
-                                {row.year}
+                                اشتراك سنوى
                               </TableCell>
                               <TableCell
                                 align="right"
-                                style={{ fontSize: "16px" }}
+                                style={{ fontWeight: "bold", fontSize: "20px" }}
                               >
-                                {row.threeMonth}
+                                اشتراك ربع سنوى
                               </TableCell>
                             </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
+                          </TableHead>
+                          <TableBody>
+                            {sub.branch.map((row: any) => (
+                              <TableRow
+                                key={row.txt}
+                                sx={{
+                                  "&:last-child td, &:last-child th": {
+                                    border: 0,
+                                  },
+                                }}
+                              >
+                                <TableCell
+                                  align="right"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {row.txt}
+                                </TableCell>
+                                <TableCell
+                                  align="right"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {row.subscribe}
+                                </TableCell>
+                                <TableCell
+                                  align="right"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {row.renewal}
+                                </TableCell>
+                                <TableCell
+                                  align="right"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {row.year}
+                                </TableCell>
+                                <TableCell
+                                  align="right"
+                                  style={{ fontSize: "16px" }}
+                                >
+                                  {row.threeMonth}
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
+                      <Button
+                        onClick={() => handleOpenPopUp(sub.offerName)}
+                        sx={{
+                          padding: "8px 35px",
+                          borderRadius: "10px",
+                          fontSize: "20px",
+                          fontWeight: "bold",
+                          border: "1px solid #54b5a6",
+                          color: "black",
+                          transition: "ease-in-out 0.3s",
+                          backgroundColor: "white",
+                          textDecoration: "none",
+                          "&:hover": {
+                            backgroundColor: "#54b5a6",
+                            color: "white",
+                          },
+                        }}
+                      >
+                        {!isLoadingOTP ? (
+                          "Activate Offer"
+                        ) : (
+                          <Loading Circular={true}></Loading>
+                        )}
+                      </Button>
+                    </>
                   )}
                 </div>
               ) : (
@@ -161,7 +193,7 @@ function TableComponent({ subCategory, handleOpenPopUp, otpStatus }: any) {
                   )}
                   {customeClick === index && otpStatus != "disable" && (
                     <Button
-                      onClick={handleOpenPopUp}
+                      onClick={() => handleOpenPopUp(sub.offerName)}
                       sx={{
                         padding: "8px 35px",
                         borderRadius: "10px",
@@ -178,7 +210,11 @@ function TableComponent({ subCategory, handleOpenPopUp, otpStatus }: any) {
                         },
                       }}
                     >
-                      Activate Offer
+                      {!isLoadingOTP ? (
+                        "Activate Offer"
+                      ) : (
+                        <Loading Circular={true}></Loading>
+                      )}
                     </Button>
                   )}
                 </div>
