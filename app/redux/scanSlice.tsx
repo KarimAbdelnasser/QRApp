@@ -4,9 +4,10 @@ import axios from "axios";
 
 const initialState = {
   isLoading: false,
-  scan: "",
+  scan: {},
   error: null as string | null,
   errorData: {},
+  errorStatus: false,
 };
 
 export const scan = createAsyncThunk(
@@ -35,16 +36,21 @@ const scanSlice = createSlice({
       .addCase(scan.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.scan = {};
+        state.errorData = {};
+        state.errorStatus = false;
       })
       .addCase(scan.fulfilled, (state, action) => {
         state.isLoading = false;
         state.scan = action.payload; // Set scan result here
         state.error = null;
+        state.errorStatus = false;
       })
       .addCase(scan.rejected, (state, action: any) => {
         state.isLoading = false;
         state.errorData = action.payload.response.data;
         state.error = action.payload.response.data.responseMessage || null;
+        state.errorStatus = true;
       });
   },
 });
