@@ -27,7 +27,8 @@ const ValidComponent: React.FC = () => {
   const dispatch = useDispatch<any>();
   const scanResult = useSelector(selectScanResult);
   const isLoading = useSelector((state: any) => state.scan.isLoading);
-  const error = useSelector((state: any) => state.scan.error);
+  const { error, errorData } = useSelector((state: any) => state.scan);
+  console.log(errorData);
 
   useEffect(() => {
     const userId = searchParams.get("userId");
@@ -45,7 +46,7 @@ const ValidComponent: React.FC = () => {
           alignItems="center"
           height="100vh"
         >
-          {!error && scanResult.responseCode == 200? (
+          {!error && scanResult.responseCode == 200 ? (
             <Box
               m={2}
               display="flex"
@@ -55,7 +56,12 @@ const ValidComponent: React.FC = () => {
               <h1 style={{ color: "black", direction: "rtl" }}>{`${
                 scanResult.responseMessage
               } ${
-                scanResult.activeOfferBrand ? scanResult.activeOfferBrand + (scanResult.sign == false? " يرجى اعادة ادخال ال OTP مرة اخري" : " و الكارت صالح"): ""
+                scanResult.activeOfferBrand
+                  ? scanResult.activeOfferBrand +
+                    (scanResult.sign == false
+                      ? " يرجى اعادة ادخال ال OTP مرة اخري"
+                      : " و الكارت صالح")
+                  : ""
               }`}</h1>
               {scanResult.sign == true ? (
                 <div
@@ -128,17 +134,54 @@ const ValidComponent: React.FC = () => {
           )}
         </Box>
       ) : (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            height: "100vh",
-          }}
-        >
-          <Loading Circular={true}></Loading>
-        </Box>
+        <>
+          {isLoading && (
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexWrap: "wrap",
+                height: "100vh",
+              }}
+            >
+              <Loading Circular={true}></Loading>
+            </Box>
+          )}
+          {error && (
+            <>
+              <Box
+                m={2}
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+              >
+                <h1 style={{ color: "black", direction: "rtl" }}>{`${
+                  errorData.responseMessage
+                } ${
+                  errorData.activeOfferBrand ? errorData.activeOfferBrand : ""
+                }`}</h1>
+                <div
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "50%",
+                    backgroundColor: "red",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "15px 0",
+                  }}
+                >
+                  <Close style={{ fontSize: 100, color: "white" }} />
+                </div>
+                <Link href="/" rel="canonical" className="redBtn">
+                  عودة
+                </Link>
+              </Box>
+            </>
+          )}
+        </>
       )}
     </>
   );

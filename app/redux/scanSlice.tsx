@@ -6,22 +6,25 @@ const initialState = {
   isLoading: false,
   scan: "",
   error: null as string | null,
+  errorData: {},
 };
 
-export const scan = createAsyncThunk("user/scan", async (userId:any) => {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/scan?userId=${userId}`
-    );
+export const scan = createAsyncThunk(
+  "user/scan",
+  async (userId: any, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/scan?userId=${userId}`
+      );
 
-    sessionStorage.setItem("auth-token",response.data.token)
-    return response.data;
-  } catch (error:any) {
-    sessionStorage.removeItem("auth-token");
-    throw error.response.data.responseCode != 200;
+      sessionStorage.setItem("auth-token", response.data.token);
+      return response.data;
+    } catch (error: any) {
+      sessionStorage.removeItem("auth-token");
+      return rejectWithValue(error);
+    }
   }
-})
-
+);
 
 const scanSlice = createSlice({
   name: "scan",
@@ -31,25 +34,26 @@ const scanSlice = createSlice({
     builder
       .addCase(scan.pending, (state) => {
         state.isLoading = true;
-        state.error = null; 
+        state.error = null;
       })
       .addCase(scan.fulfilled, (state, action) => {
         state.isLoading = false;
         state.scan = action.payload; // Set scan result here
         state.error = null;
       })
-      .addCase(scan.rejected, (state, action) => {
+      .addCase(scan.rejected, (state, action: any) => {
         state.isLoading = false;
-        state.error = action.error.message || null;
+        state.errorData = action.payload.response.data;
+        state.error = action.payload.response.data.responseMessage || null;
       });
   },
 });
 
-export const selectScanResult = (state: any) => state.scan.scan; 
+export const selectScanResult = (state: any) => state.scan.scan;
 
-export const selectOtpStatus = (state: any) => state.scan.scan.otpStatus; 
+export const selectOtpStatus = (state: any) => state.scan.scan.otpStatus;
 
-export const selectScanCardNumber = (state: any) => state.scan.scan.cardNumber; 
+export const selectScanCardNumber = (state: any) => state.scan.scan.cardNumber;
 
 const scanReducer = scanSlice.reducer;
 
