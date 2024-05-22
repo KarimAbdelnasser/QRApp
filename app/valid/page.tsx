@@ -45,28 +45,52 @@ const ValidComponent: React.FC = () => {
           alignItems="center"
           height="100vh"
         >
-          {!error && scanResult.sign == true ? (
+          {!error && scanResult.responseCode == 200? (
             <Box
               m={2}
               display="flex"
               flexDirection="column"
               alignItems="center"
             >
-              <h1 style={{ color: "black", direction: "rtl" }}>{`${scanResult.responseMessage} ${scanResult.activeOfferBrand? scanResult.activeOfferBrand : ""}`}</h1>
-              <div
-                style={{
-                  width: "150px",
-                  height: "150px",
-                  borderRadius: "50%",
-                  backgroundColor: "#54b5a6",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  margin: "15px 0",
-                }}
-              >
-                <CheckCircleOutline style={{ fontSize: 100, color: "white" }} />
-              </div>
+              <h1 style={{ color: "black", direction: "rtl" }}>{`${
+                scanResult.responseMessage
+              } ${
+                scanResult.activeOfferBrand ? scanResult.activeOfferBrand + " و الكارت صالح": ""
+              }`}</h1>
+              {scanResult.sign == true ? (
+                <div
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "50%",
+                    backgroundColor: "#54b5a6",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "15px 0",
+                  }}
+                >
+                  <CheckCircleOutline
+                    style={{ fontSize: 100, color: "white" }}
+                  />
+                </div>
+              ) : (
+                <div
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "50%",
+                    backgroundColor: "red",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    margin: "15px 0",
+                  }}
+                >
+                  <Close style={{ fontSize: 100, color: "white" }} />
+                </div>
+              )}
+
               <Link href="/pin" rel="canonical" className="successBtn">
                 التالى
               </Link>
@@ -78,7 +102,11 @@ const ValidComponent: React.FC = () => {
               flexDirection="column"
               alignItems="center"
             >
-              <h1 style={{ color: "black", direction: "rtl" }}>{`${scanResult.responseMessage} ${scanResult.activeOfferBrand? scanResult.activeOfferBrand : ""}`}</h1>
+              <h1 style={{ color: "black", direction: "rtl" }}>{`${
+                scanResult.responseMessage
+              } ${
+                scanResult.activeOfferBrand ? scanResult.activeOfferBrand : ""
+              }`}</h1>
               <div
                 style={{
                   width: "150px",
