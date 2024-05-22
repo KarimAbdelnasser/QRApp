@@ -55,7 +55,7 @@ const ValidComponent: React.FC = () => {
               <h1 style={{ color: "black", direction: "rtl" }}>{`${
                 scanResult.responseMessage
               } ${
-                scanResult.activeOfferBrand ? scanResult.activeOfferBrand + " و الكارت صالح": ""
+                scanResult.activeOfferBrand ? scanResult.activeOfferBrand + (scanResult.sign == false? " يرجى اعادة ادخال ال OTP مرة اخري" : " و الكارت صالح"): ""
               }`}</h1>
               {scanResult.sign == true ? (
                 <div
