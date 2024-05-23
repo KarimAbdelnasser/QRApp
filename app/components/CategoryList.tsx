@@ -50,7 +50,9 @@ function CategoryList() {
     (state: any) => state.categories.isLoading
   );
   const isLoadingOTP = useSelector((state: any) => state.otp.isLoading);
-  const isLoadingButton = useSelector((state: any) => state.otp.isLoadingButton);
+  const isLoadingButton = useSelector(
+    (state: any) => state.otp.isLoadingButton
+  );
 
   const otpStatus = useSelector(selectOtpStatus);
   const [otpValue, setOtpValue] = useState<any>(null);
@@ -106,6 +108,7 @@ function CategoryList() {
       </Box>
     );
   };
+  console.log(offers);
 
   return (
     <>
@@ -159,7 +162,7 @@ function CategoryList() {
             >
               {CategoriesC?.map((row: any, index: any) => (
                 <MenuItem
-                  key={row.name}
+                  key={row.name + index}
                   onClick={() => {
                     setCategory(
                       offers?.filter(
@@ -330,30 +333,32 @@ function CategoryList() {
                                   </TableBody>
                                 </Table>
                               </TableContainer>
-                              <Button
-                                onClick={() => handleOpenPopUp(sub.offerName)}
-                                sx={{
-                                  padding: "8px 35px",
-                                  borderRadius: "10px",
-                                  fontSize: "20px",
-                                  fontWeight: "bold",
-                                  border: "1px solid #54b5a6",
-                                  color: "black",
-                                  transition: "ease-in-out 0.3s",
-                                  backgroundColor: "white",
-                                  textDecoration: "none",
-                                  "&:hover": {
-                                    backgroundColor: "#54b5a6",
-                                    color: "white",
-                                  },
-                                }}
-                              >
-                                {!isLoadingOTP ? (
-                                  "Activate Offer"
-                                ) : (
-                                  <Loading Circular={true}></Loading>
-                                )}
-                              </Button>
+                              {sub.usersType != "A" && (
+                                <Button
+                                  onClick={() => handleOpenPopUp(sub.offerName)}
+                                  sx={{
+                                    padding: "8px 35px",
+                                    borderRadius: "10px",
+                                    fontSize: "20px",
+                                    fontWeight: "bold",
+                                    border: "1px solid #54b5a6",
+                                    color: "black",
+                                    transition: "ease-in-out 0.3s",
+                                    backgroundColor: "white",
+                                    textDecoration: "none",
+                                    "&:hover": {
+                                      backgroundColor: "#54b5a6",
+                                      color: "white",
+                                    },
+                                  }}
+                                >
+                                  {!isLoadingOTP ? (
+                                    "Activate Offer"
+                                  ) : (
+                                    <Loading Circular={true}></Loading>
+                                  )}
+                                </Button>
+                              )}
                             </>
                           )}
                         </div>
@@ -484,9 +489,11 @@ function CategoryList() {
                       }}
                       onClick={otpConfirm}
                     >
-                      {!isLoadingButton ? "Confirm" : (
-                                <Loading Circular={true}></Loading>
-                              )}
+                      {!isLoadingButton ? (
+                        "Confirm"
+                      ) : (
+                        <Loading Circular={true}></Loading>
+                      )}
                     </Button>
                   </Box>
                 </>
