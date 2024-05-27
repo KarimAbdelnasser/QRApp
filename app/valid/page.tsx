@@ -6,7 +6,8 @@ import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { scan, ScanResult } from "../redux/scanSlice";
+import { scan } from "../redux/scanSlice";
+import { ScanResult } from "../redux/scanSlice";
 import LoadingSpinner from "../loadingSpinner/loading";
 
 const ValidPage: React.FC = () => {

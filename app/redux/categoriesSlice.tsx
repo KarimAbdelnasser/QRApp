@@ -1,4 +1,3 @@
-//USELESS
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -20,7 +19,6 @@ export const fetchCategories = createAsyncThunk(
         `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/offer/categories`,
         { headers }
       );
-
       return response.data;
     } catch (error) {
       throw new Error("Failed to fetch categotries");
@@ -49,9 +47,6 @@ const categoriesSlice = createSlice({
         });
     },
   });
-
-export const getCategoriesC = (state: any) => state.categories.categories.data; 
-
 export const categoryReducer = categoriesSlice.reducer;
 
 export default categoryReducer;

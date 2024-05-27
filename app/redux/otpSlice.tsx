@@ -1,4 +1,3 @@
-//IMPORTANT
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { errorToast, successToast } from "../components/AlertTimer";
@@ -11,9 +10,30 @@ const initialState = {
   error: null,
 };
 
-export const sendOTP = createAsyncThunk(
-  "user/sendOtp",
-  async (brand:any) => {
+export const sendOTP = createAsyncThunk("user/sendOtp", async (brand: any) => {
+  try {
+    const authToken = sessionStorage.getItem("auth-token");
+
+    const headers = {
+      "auth-token": authToken,
+    };
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/sendOtp`,
+      { brand },
+      { headers }
+    );
+
+    successToast(response.data.responseMessage);
+    return response.data;
+  } catch (error: any) {
+    errorToast(error.response.data.responseMessage);
+    throw new Error("Failed to send otp");
+  }
+});
+
+export const verifyOtp = createAsyncThunk(
+  "user/verifyOtp",
+  async (otp: any) => {
     try {
       const authToken = sessionStorage.getItem("auth-token");
 
@@ -21,43 +41,19 @@ export const sendOTP = createAsyncThunk(
         "auth-token": authToken,
       };
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/sendOtp`,
-        { brand },
+        `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/verifyOtp`,
+        { otp },
         { headers }
       );
 
       successToast(response.data.responseMessage);
       return response.data;
-    } catch (error:any) {
+    } catch (error: any) {
       errorToast(error.response.data.responseMessage);
-      throw new Error("Failed to fetch offers");
+      throw new Error("Failed to verify otp");
     }
   }
 );
-
-export const verifyOtp = createAsyncThunk(
-    "user/verifyOtp",
-    async (otp:any) => {
-      try {
-        const authToken = sessionStorage.getItem("auth-token");
-  
-        const headers = {
-          "auth-token": authToken,
-        };
-        const response = await axios.post(
-          `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/user/verifyOtp`,
-          { otp },
-          { headers }
-        );
-
-        successToast(response.data.responseMessage);
-        return response.data;
-      } catch (error:any) {
-        errorToast(error.response.data.responseMessage);
-        throw new Error("Failed to fetch offers");
-      }
-    }
-  );
 
 const otpSlice = createSlice({
   name: "otp",
@@ -78,7 +74,7 @@ const otpSlice = createSlice({
       .addCase(sendOTP.rejected, (state, action) => {
         state.isLoading = false;
         state.otpSendingStatus = "failed";
-        state.error = null
+        state.error = null;
       })
       .addCase(verifyOtp.pending, (state) => {
         state.isLoadingButton = true;
@@ -92,12 +88,12 @@ const otpSlice = createSlice({
       .addCase(verifyOtp.rejected, (state, action) => {
         state.isLoadingButton = false;
         state.otpConfirmation = false;
-        state.error = null
+        state.error = null;
       });
   },
 });
 
-export const getOTPConfirmation = (state: any) => state.otp.otpConfirmation; 
+export const getOTPConfirmation = (state: any) => state.otp.otpConfirmation;
 
 export const otpReducer = otpSlice.reducer;
 

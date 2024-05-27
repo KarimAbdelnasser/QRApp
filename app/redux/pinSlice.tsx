@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const verification = createAsyncThunk(
-  "/user/logIn",
+  "/user/verifyPin",
   async ({ pin }: { pin: string}) => {
     try {
       const authToken = localStorage.getItem("auth-token");

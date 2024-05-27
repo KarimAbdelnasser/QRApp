@@ -42,7 +42,7 @@ const scanSlice = createSlice({
       })
       .addCase(scan.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.scan = action.payload; // Set scan result here
+        state.scan = action.payload;
         state.error = null;
         state.errorStatus = false;
       })
@@ -55,11 +55,9 @@ const scanSlice = createSlice({
   },
 });
 
-export const selectScanResult = (state: any) => state.scan.scan;
-
-export const selectOtpStatus = (state: any) => state.scan.scan.otpStatus;
-
-export const selectScanCardNumber = (state: any) => state.scan.scan.cardNumber;
+export const ScanResult = (state: any) => state.scan.scan;
+export const ScanCardNumber = (state: any) => state.scan.scan.cardNumber;
+export const OtpStatus = (state: any) => state.scan.scan.otpStatus;
 
 const scanReducer = scanSlice.reducer;
 

@@ -1,4 +1,3 @@
-//IMPORTANT
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -8,26 +7,21 @@ const initialState = {
   error: null,
 };
 
-export const fetchOffers = createAsyncThunk(
-  "offer/getOffers",
-  async () => {
-    try {
-      const authToken = sessionStorage.getItem("auth-token");
-      //CHANGE
-      const headers = {
-        "auth-token": authToken,
-      };
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/offer/getOffers?limit=60`,
-        { headers }
-      );
-
-      return response.data.data;
-    } catch (error) {
-      throw new Error("Failed to fetch offers");
-    }
+export const fetchOffers = createAsyncThunk("offer/getOffers", async () => {
+  try {
+    const authToken = localStorage.getItem("auth-token");
+    const headers = {
+      "auth-token": authToken,
+    };
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_QR_SERVER_URL}/offer/getOffers?limit=50`,
+      { headers }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Failed to fetch offers");
   }
-);
+});
 
 const offersSlice = createSlice({
   name: "offers",
@@ -46,13 +40,12 @@ const offersSlice = createSlice({
       })
       .addCase(fetchOffers.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = null
+        state.error = null;
       });
   },
 });
 
-export const getOffers = (state: any) => state.offers.offers; 
-
 export const offerReducer = offersSlice.reducer;
 
 export default offerReducer;
+export const Offers = (state: any) => state.offers.offers;
