@@ -410,4 +410,3 @@ export const allData = [
     description: "This is the description of offer 4.",
   },
 ];
-

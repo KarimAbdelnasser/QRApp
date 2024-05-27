@@ -1,59 +1,71 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { errorToast, successToast } from "../components/AlertTimer";
-import { useDispatch, useSelector } from "react-redux";
-import { getSelectExists, resetExists, verification } from "../redux/verifySlice";
+'use client';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { errorToast, successToast } from '../components/AlertTimer';
+import { verification } from '../redux/pinSlice';
+
 import { useRouter } from 'next/navigation';
-import Loading from "../components/Loading";
+import { IconButton, Tooltip } from '@mui/material';
+import InfoIcon from '@mui/icons-material/Info';
 const PinPage: React.FC = () => {
-  const [pin, setPin] = useState<string>("");
-  const dispatch = useDispatch<any>();
+  const [pin, setPin] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const { isLoading } = useSelector((state: RootState) => state.pin);
   const router = useRouter();
-  const isLoading = useSelector((state: any) => state.verify.isLoading);
 
   const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPin = e.target.value.replace(/\D/g, "").slice(0, 6);
+    const newPin = e.target.value.replace(/\D/g, '').slice(0, 6);
     setPin(newPin);
   };
 
-  let confirmUser = useSelector(getSelectExists)
-
-  const handleConfirm = () => { 
-    if (pin.length === 6) {
-      dispatch(verification(pin))
-    } else {
-      errorToast("Please enter a 6-digit PIN.");
+  const handleConfirm = async () => {
+    try {
+      setErrorMessage('');
+      if (pin) {
+        const response = await dispatch(verification({ pin }));
+        successToast(response.payload.responseMessage);
+        setTimeout(() => {
+          router.push('/offers'); 
+        }, 2750);
+      } else {
+        setErrorMessage('الرجاء إدخال الأرقام');
+      }
+    } catch (error: any) {
+      if (error.response && error.response.data && error.response.data.responseMessage) {
+        errorToast(error.response.data.responseMessage);
+      }
     }
   };
 
-  useEffect(()=>{
-    if(confirmUser){
-      setTimeout(() => {
-        router.push('/offers');
-        dispatch(resetExists());
-      }, 2000);
-    }
-      
-  },[confirmUser])
-
   return (
-    <main className="main-page">
-      <div className="box">
-        <h1>Enter PIN</h1>
+    <main className='main-page'>
+      <div className='box'>
+        <h1>
+            PIN
+          <Tooltip title="الرقم السري مكون من 6 ارقام" arrow>
+            <IconButton>
+              <InfoIcon />
+            </IconButton>
+          </Tooltip>
+      
+        </h1>
         <input
-          type="text"
+          type='password'
           value={pin}
           onChange={handlePinChange}
-          className={"pin-input"}
-          minLength={6}
+          className={'pin-input'}
           maxLength={6}
         />
+        {errorMessage && <p style={{ color: 'white' }}>{errorMessage}</p>}
         <button
           onClick={handleConfirm}
-          className="successBtn"
-          style={{ width: "100%%" }}
+          className={`successBtn${isLoading ? ' loading' : ''}`}
+          style={{ width: '100%' }}
+          disabled={isLoading}
         >
-          {!isLoading ? "Confirm" : <Loading Circular={true}></Loading>}
+          {isLoading ? 'Loading...' : 'Confirm'}
         </button>
       </div>
     </main>

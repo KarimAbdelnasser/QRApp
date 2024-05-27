@@ -10,7 +10,7 @@ import Image from "next/image";
 import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import Loading from "./Loading";
+import LoadingSpinner from "../loadingSpinner/loading";
 
 function TableComponent({
   subCategory,
@@ -31,7 +31,7 @@ function TableComponent({
         id="newGrid"
       >
         {subCategory &&
-          subCategory.map((sub: any, index: any) => (
+          subCategory?.data?.map((sub: any, index: any) => (
             <Grid
               item
               lg={sub.branch.length != 0 ? 12 : 3}
@@ -47,7 +47,8 @@ function TableComponent({
                       onClick={() =>
                         setCustomeClick(customeClick === index ? null : index)
                       }
-                      src="/golds.png"
+                      priority
+                      src="/gold.png"
                       alt="logo"
                       width={150}
                       height={150}
@@ -160,9 +161,9 @@ function TableComponent({
                         }}
                       >
                         {!isLoadingOTP ? (
-                          "Activate Offer"
+                          "Redeem offer"
                         ) : (
-                          <Loading Circular={true}></Loading>
+                          <LoadingSpinner></LoadingSpinner>
                         )}
                       </Button>
                     </>
@@ -188,7 +189,7 @@ function TableComponent({
                     <div className="card-content">
                       <h3>{sub.offerName}</h3>
                       <p>percentage: {sub.offerPercentage}</p>
-                      <p>{sub.offerDescription}</p>
+                      <p> {sub.offerDescription}</p>
                     </div>
                   )}
                   {customeClick === index && otpStatus != "disable" && (
@@ -211,9 +212,9 @@ function TableComponent({
                       }}
                     >
                       {!isLoadingOTP ? (
-                        "Activate Offer"
+                        "Redeem offer"
                       ) : (
-                        <Loading Circular={true}></Loading>
+                        <LoadingSpinner></LoadingSpinner>
                       )}
                     </Button>
                   )}

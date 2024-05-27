@@ -6,8 +6,8 @@ import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { scan, selectScanResult } from "../redux/scanSlice";
-import Loading from "../components/Loading";
+import { scan, ScanResult } from "../redux/scanSlice";
+import LoadingSpinner from "../loadingSpinner/loading";
 
 const ValidPage: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const ValidPage: React.FC = () => {
       <Head>
         <title>valid</title>
       </Head>
-      <Suspense fallback={<Loading></Loading>}>
+      <Suspense fallback={<LoadingSpinner></LoadingSpinner>}>
         <ValidComponent />
       </Suspense>
     </div>
@@ -25,7 +25,7 @@ const ValidPage: React.FC = () => {
 const ValidComponent: React.FC = () => {
   const searchParams = useSearchParams();
   const dispatch = useDispatch<any>();
-  const scanResult = useSelector(selectScanResult);
+  const scanResult = useSelector(ScanResult);
   const isLoading = useSelector((state: any) => state.scan.isLoading);
   const { error, errorData, errorStatus } = useSelector(
     (state: any) => state.scan
@@ -146,7 +146,7 @@ const ValidComponent: React.FC = () => {
                 height: "100vh",
               }}
             >
-              <Loading Circular={true}></Loading>
+              <LoadingSpinner></LoadingSpinner>
             </Box>
           )}
           {errorStatus && (

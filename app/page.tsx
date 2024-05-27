@@ -2,10 +2,14 @@
 import { useEffect } from 'react';
 import QRCard from "./components/QRCard";
 
-export default function Home() {
+const Home = () => {
+ 
+
   return (
     <main className="main-page">
       <QRCard />
     </main>
   );
 }
+
+export default Home;
