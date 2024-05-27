@@ -24,9 +24,7 @@ const QRCard: React.FC = () => {
       ) : (
         QRsData?.map((data: any, index: number) => (
           <Link 
-          href={data.url.replace("https://cardnames.vercel.app/", "http://localhost:3000/")}
-
-
+          href={data.url}
             key={index} 
             className="card"
           >
